@@ -6,7 +6,7 @@
 
     <groupId>ru.basher</groupId>
     <artifactId>BasherConfiguration</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 
     <properties>
         <java.version>8</java.version>

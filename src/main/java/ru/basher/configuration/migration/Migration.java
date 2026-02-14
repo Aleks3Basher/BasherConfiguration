@@ -37,7 +37,7 @@ public class Migration {
 
             for (MigratableFile file : files) {
                 try {
-                    file.migrate(ctx, fsVersion);
+                    file.migrate(ctx, fsVersion, resVersion);
                 } catch (Exception ignored) {
                 }
             }

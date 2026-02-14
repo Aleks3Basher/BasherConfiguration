@@ -6,6 +6,6 @@ public interface MigratableFile {
 
     @NotNull String fileName();
 
-    void migrate(@NotNull MigrationContext ctx, int fromVersion) throws Exception;
+    void migrate(@NotNull MigrationContext ctx, int fromVersion, int toVersion) throws Exception;
 
 }
