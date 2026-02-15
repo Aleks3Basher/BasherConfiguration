@@ -44,6 +44,7 @@ public class Migration {
 
             if(needBackup) ctx.backupFs(fsVersion);
 
+            resVersionFile.set(versionSection, resVersion);
             for (MigratableFile file : files) {
                 CommentFileConfiguration config = ctx.resource(file.fileName());
                 ctx.save(file.fileName(), config);
