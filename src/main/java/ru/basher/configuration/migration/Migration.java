@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import ru.basher.configuration.CommentConfigurationSection;
 import ru.basher.configuration.CommentFileConfiguration;
+import ru.basher.configuration.migration.changes.MigrationChanges;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,6 +40,14 @@ public class Migration {
                 try {
                     file.migrate(ctx, fsVersion, resVersion);
                 } catch (Exception ignored) {
+                }
+            }
+
+            for(int version = fsVersion > resVersion ? 1 : fsVersion; version < resVersion; version++) {
+                for(MigrationChanges changes : ctx.getChanges()) {
+                    if(changes.getFromVersion() == version) {
+                        changes.migrate(ctx);
+                    }
                 }
             }
 
