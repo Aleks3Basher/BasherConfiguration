@@ -8,4 +8,8 @@ public interface MigratableFile {
 
     void migrate(@NotNull MigrationContext ctx, int fromVersion, int toVersion) throws Exception;
 
+    default boolean commonRelocate() {
+        return true;
+    }
+
 }

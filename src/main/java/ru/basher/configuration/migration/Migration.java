@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import ru.basher.configuration.CommentConfigurationSection;
 import ru.basher.configuration.CommentFileConfiguration;
 import ru.basher.configuration.migration.changes.MigrationChanges;
+import ru.basher.configuration.migration.changes.SectionChanges;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,6 +41,10 @@ public class Migration {
                 try {
                     file.migrate(ctx, fsVersion, resVersion);
                 } catch (Exception ignored) {
+                }
+                if(file.commonRelocate()) {
+                    MigrationChanges changes = new SectionChanges(resVersion - 1, file.fileName());
+                    ctx.addChanges(changes);
                 }
             }
 
