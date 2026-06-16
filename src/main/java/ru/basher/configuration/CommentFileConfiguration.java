@@ -49,9 +49,8 @@ public class CommentFileConfiguration extends CommentMemorySection {
     }
 
     public void load(@NotNull File file) {
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            load(new InputStreamReader(fis, Charsets.UTF_8));
+        try (InputStreamReader reader = new InputStreamReader(new FileInputStream(file), Charsets.UTF_8)) {
+            load(reader);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
