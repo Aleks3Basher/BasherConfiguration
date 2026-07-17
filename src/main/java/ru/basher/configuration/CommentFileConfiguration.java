@@ -116,12 +116,14 @@ public class CommentFileConfiguration extends CommentMemorySection {
         String value = node.getValue();
 
         if (Tag.INT.equals(tag)) {
-            return Integer.parseInt(value);
-        }
-        if (Tag.FLOAT.equals(tag)) {
+            try {
+                return Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                return Long.parseLong(value);
+            }
+        } else if (Tag.FLOAT.equals(tag)) {
             return Double.parseDouble(value);
-        }
-        if (Tag.BOOL.equals(tag)) {
+        } else if (Tag.BOOL.equals(tag)) {
             return Boolean.parseBoolean(value);
         }
         return value;
